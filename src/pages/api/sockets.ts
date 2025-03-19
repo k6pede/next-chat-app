@@ -3,7 +3,7 @@ import cors from 'cors'
 
 import type { Socket as NetSocket } from 'net'
 import type { Server as HttpServer } from 'http'
-import { Server as SocketServer } from 'socket.io'
+import { Server as SocketIOServer } from 'socket.io'
 
 // 交差型の作成 : https://qiita.com/suema0331/items/a145909db0bcbcc3f949
 // ioプロパティを持つオブジェクト型
@@ -11,7 +11,7 @@ import { Server as SocketServer } from 'socket.io'
 // + socketプロパティを持つオブジェクト型
 // + NextApiResponse
 type ResponseWebSocket = NextApiResponse & {
-  socket: NetSocket & { server: HttpServer & { io?: SocketServer } }
+  socket: NetSocket & { server: HttpServer & { io?: SocketIOServer } }
 }
 
 const MESSAGE_CONNECTED = 'connection'
@@ -27,7 +27,7 @@ export default function SocketHandler(req: NextApiRequest, res: ResponseWebSocke
   if (res.socket.server.io) return res.send('already set up')
 
   // Socket.IOのサーバを作成する
-  const io = new SocketServer(res.socket.server, {
+  const io = new SocketIOServer(res.socket.server, {
     addTrailingSlash: false,
   })
 

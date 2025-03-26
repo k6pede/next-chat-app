@@ -1,12 +1,10 @@
-// Configuration for Socket.IO client and server
 export const SOCKET_CONFIG = {
-  // The base URL for the Socket.IO server
   SERVER_URL: process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3000',
 
-  // The path for Socket.IO on the server
+  // client とserver側でパスを共通化
   PATH: '/api/socketio',
 
-  // Socket.IO event names
+  // websocketのイベント定義
   EVENTS: {
     CONNECTION: 'connection',
     DISCONNECT: 'disconnect',

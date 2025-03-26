@@ -1,8 +1,6 @@
-// コメントが記してある箇所だけ追加
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-//jotaiからProviderコンポーネントをインポート
 import { Provider } from 'jotai'
 
 const inter = Inter({ subsets: ['latin'] })

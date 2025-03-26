@@ -11,4 +11,7 @@ export const socketAtom = atom(null as unknown as Socket)
 export const messageBoardAtom = atom<Array<Message>>([])
 
 // State: ユーザー名
-export const userNameAtom = atom('')
+export const userNameAtom = atom<string>('')
+
+// State: テスト用
+export const testCountAtom = atom<number>(0)

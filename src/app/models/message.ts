@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 // TODO:バリデーションルール実装
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const MessageSchemaDef = z.object({
   id: z.string(),
   room: z.number(),

@@ -3,7 +3,7 @@
 import React, { FormEventHandler, useEffect, useState, useRef } from 'react'
 import Message from '@/app/models/message'
 import { useAtom } from 'jotai'
-import { messageBoardAtom, socketAtom, userNameAtom } from '../globalStates/atom'
+import { messageBoardAtom, socketAtom, testCountAtom, userNameAtom } from '../globalStates/atom'
 import { useRouter } from 'next/navigation'
 import { SOCKET_CONFIG } from '@/config/socket'
 
@@ -16,6 +16,7 @@ export default function MessageList() {
   const [messageBoard] = useAtom(messageBoardAtom)
   const [userName] = useAtom(userNameAtom)
   const [socket] = useAtom(socketAtom)
+  const [testCount] = useAtom(testCountAtom)
   const router = useRouter()
 
   // Reference to message list container for auto-scrolling
@@ -83,6 +84,8 @@ export default function MessageList() {
         {messageBoard.length === 0 ? (
           <div className="flex items-center justify-center h-full text-gray-500">
             No messages yet. Start the conversation!
+            <br />
+            {testCount} messages.
           </div>
         ) : (
           messageBoard.map((msg: Message) => (
@@ -106,7 +109,7 @@ export default function MessageList() {
       <div className="border-t border-gray-200 bg-white p-4">
         <form onSubmit={handleSubmit} className="container mx-auto flex gap-2">
           <input
-            className="flex-1 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="text-black flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             type="text"
             placeholder="Type your message..."
             value={message}

@@ -34,9 +34,8 @@ export default function ConnectForm() {
 
       // Set up event listeners
       socket.on(SOCKET_CONFIG.EVENTS.MESSAGE, (newMessage: Message) => {
-        // Update the message board with the new message
         setMessageBoard((messageBoard) => {
-          // Remove duplicates (just in case)
+          // 重複しているIDを持つメッセージ排除とりあえずの処理
           const uniqueMessages = Array.from(
             new Map(messageBoard.map((message) => [message.id, message])).values()
           )
@@ -45,10 +44,9 @@ export default function ConnectForm() {
         })
       })
 
-      // Save the socket in global state
+      // グローバルステートにwebsocket保存
       setSocket(socket)
 
-      // Navigate to the chat room
       router.push('/rooms')
     } catch (error) {
       console.error('Connection error:', error)
@@ -65,7 +63,7 @@ export default function ConnectForm() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="p-8 bg-white rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-bold mb-6 text-center">Join Chat</h1>
+        <h1 className="text-2xl text-black font-bold mb-6 text-center">Join Chat</h1>
 
         {error && (
           <div className="mb-4 p-3 bg-red-100 border border-red-300 text-red-700 rounded">
@@ -76,11 +74,11 @@ export default function ConnectForm() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-              Your Name
+              名前
             </label>
             <input
               id="name"
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full text-black border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
               name="name"
               placeholder="Enter your name"
               value={userName}
